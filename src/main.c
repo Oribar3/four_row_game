@@ -12,7 +12,7 @@ void playGame(int mode) {
     int board[ROWS][COLS];
     initBoard(board);
     int currentPlayer = PLAYER1, win = 0, col;
-    srand(time(NULL));
+    srand(time(NULL)); // אתחול מחולל מספרים אקראיים
 
     while (!win && !isBoardFull(board)) {
         printBoard(board);
@@ -20,18 +20,37 @@ void playGame(int mode) {
             printf("Your turn (0-6): ");
             fflush(stdout); // ניקוי באפר הפלט להצגת הודעה מיידית
             if (scanf("%d", &col) != 1) { while(getchar() != '\n'){}; continue; }
-        } else {
-            // ניהול תור היריב בהתאם למצב שנבחר (PvP או רמות קושי שונות)
-            if (mode == 1) {
+        } else {// ניהול תור היריב בהתאם למצב שנבחר (PvP או רמות קושי שונות)
+        switch (mode) {
+            case 1: // מצב שחקן נגד שחקן (PvP)
                 printf("Player 2 turn (0-6): ");
                 fflush(stdout);
-                if (scanf("%d", &col) != 1) { while(getchar() != '\n'){}; continue; }
-            } else {
-                if (mode == 2) col = getEasyMove(board);
-                else if (mode == 3) col = getMediumMove(board, PLAYER2);
-                else col = getHardMove(board, PLAYER2);
+                // בדיקת קלט תקין וניקוי הבאפר במקרה של טעות
+                if (scanf("%d", &col) != 1) { 
+                    while(getchar() != '\n') { } 
+                    continue; // חזרה לתחילת לולאת ה-while של המשחק
+                }
+                break;
+
+            case 2: // מחשב - רמה קלה
+                col = getEasyMove(board);
                 printf("Computer chose column %d\n", col);
-            }
+                break;
+
+            case 3: // מחשב - רמה בינונית
+                col = getMediumMove(board, PLAYER2);
+                printf("Computer chose column %d\n", col);
+                break;
+
+            case 4: // מחשב - רמה קשה (Minimax)
+                col = getHardMove(board, PLAYER2);
+                printf("Computer chose column %d\n", col);
+                break;
+                
+            default:
+                // מקרה הגנה למקרה של מצב לא מוכר
+                continue;
+        }
         }
 
         // ביצוע המהלך ובדיקת ניצחון
