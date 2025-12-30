@@ -19,13 +19,13 @@ void playGame(int mode) {
         if (currentPlayer == PLAYER1) {
             printf("Your turn (0-6): ");
             fflush(stdout); // ניקוי באפר הפלט להצגת הודעה מיידית
-            if (scanf("%d", &col) != 1) { while(getchar() != '\n'); continue; }
+            if (scanf("%d", &col) != 1) { while(getchar() != '\n'){}; continue; }
         } else {
             // ניהול תור היריב בהתאם למצב שנבחר (PvP או רמות קושי שונות)
             if (mode == 1) {
                 printf("Player 2 turn (0-6): ");
                 fflush(stdout);
-                if (scanf("%d", &col) != 1) { while(getchar() != '\n'); continue; }
+                if (scanf("%d", &col) != 1) { while(getchar() != '\n'){}; continue; }
             } else {
                 if (mode == 2) col = getEasyMove(board);
                 else if (mode == 3) col = getMediumMove(board, PLAYER2);
@@ -64,7 +64,7 @@ int main() {
         printf("Choice: ");
         fflush(stdout);
         
-        if (scanf("%d", &choice) != 1) { while(getchar() != '\n'); continue; }
+        if (scanf("%d", &choice) != 1) { while(getchar() != '\n'){}; continue; }
         if (choice >= 1 && choice <= 4) {
             playGame(choice);
         }
