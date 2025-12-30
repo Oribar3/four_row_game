@@ -10,7 +10,7 @@
 int getEasyMove(int board[ROWS][COLS]) {
     int col;
     do { 
-        col = rand() % COLS; 
+        col = rand() % COLS; // בחירת עמודה אקראית בין 0 ל-6
     } while (getLowestEmptyRow(board, col) == -1);
     return col;
 }
