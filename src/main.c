@@ -90,13 +90,13 @@ int main() {
     int p2_wins = 0;
     int ties = 0;
 
-    while (choice != 6) { // אופציה 6 היא כעת יציאה
+    while (choice != 6) { // אופציה 6 היא יציאה
         printf("\n======= CONNECT FOUR =======\n");
         printf("1. PvP (Player vs Player)\n");
         printf("2. Easy AI\n");
         printf("3. Medium AI\n");
         printf("4. Hard AI (Minimax)\n");
-        printf("5. View Statistics\n"); // הצגת הניקוד המצטבר
+        printf("5. View Statistics\n");
         printf("6. Exit\n");
         printf("Choice: ");
         fflush(stdout);
